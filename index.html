@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SplashDose</title>
+    <title>Split Dose</title>
     
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="SplashDose">
+    <meta name="apple-mobile-web-app-title" content="Split Dose">
     
     <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%233b82f6%22/><text y=%22.72em%22 x=%220.1em%22 font-size=%2270%22>💧</text></svg>">
     
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💧</text></svg>">
     
-    <link rel="manifest" href="data:application/json,{%22name%22:%22SplashDose%22,%22short_name%22:%22SplashDose%22,%22start_url%22:%22.%22,%22display%22:%22standalone%22,%22background_color%22:%22%23f3f4f6%22,%22theme_color%22:%22%234f46e5%22}">
+    <link rel="manifest" href="data:application/json,{%22name%22:%22Split%20Dose%22,%22short_name%22:%22Split%20Dose%22,%22start_url%22:%22.%22,%22display%22:%22standalone%22,%22background_color%22:%22%23f3f4f6%22,%22theme_color%22:%22%234f46e5%22}">
     
     <style>
         :root {
@@ -222,7 +222,7 @@
 
 <div class="app-container">
     <header>
-        <h1>SplashDose 💧</h1>
+        <h1>Split Dose</h1>
         <p>No-math morning potion planner</p>
     </header>
 
@@ -297,32 +297,25 @@
         let water = parseInt(waterInput.value);
         let target = parseInt(targetInput.value);
 
-        // Safety check: Target can't be more than the physical pill size
         if (target > pill) {
             target = pill;
             targetInput.value = pill;
         }
         
-        // Dynamic slider caps
         targetInput.max = pill;
 
-        // Display text updates
         pillVal.innerText = `${pill} mg`;
         waterVal.innerText = `${water} ml (or grams)`;
         targetVal.innerText = `${target} mg`;
 
-        // The Magic Arithmetic
         const drinkAmount = (target / pill) * water;
         const leaveAmount = water - drinkAmount;
 
-        // Precision handling: round nicely to 1 decimal place
         const drinkFormatted = parseFloat(drinkAmount.toFixed(1));
         const leaveFormatted = parseFloat(leaveAmount.toFixed(1));
 
-        // Update Big Banner
         finalOutput.innerText = `Drink ${drinkFormatted} ml`;
 
-        // Update Blocks
         const leavePercent = (leaveAmount / water) * 100;
         
         if (leavePercent <= 0) {
@@ -336,12 +329,10 @@
         blockDrink.innerText = `Drink: ${drinkFormatted} ml`;
     }
 
-    // Attach listeners to everything
     [pillInput, waterInput, targetInput].forEach(input => {
         input.addEventListener('input', calculate);
     });
 
-    // Initial run
     calculate();
 </script>
 
